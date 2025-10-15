@@ -104,3 +104,94 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+// Функция для загрузки и отображения аватарки
+document.addEventListener('DOMContentLoaded', function() {
+    // Загрузка аватарки
+    const avatarInput = document.getElementById('avatar-input');
+    const avatar = document.getElementById('avatar');
+    
+    if (avatarInput && avatar) {
+        avatarInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // Создаем изображение вместо текста
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = 'Аватар студента';
+                    
+                    // Очищаем контейнер и добавляем изображение
+                    avatar.innerHTML = '';
+                    avatar.appendChild(img);
+                    
+                    // Меняем классы
+                    avatar.classList.remove('no-photo');
+                    avatar.classList.add('has-photo');
+                    
+                    // Сохраняем в localStorage
+                    localStorage.setItem('userAvatar', e.target.result);
+                }
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Проверяем, есть ли сохраненная аватарка в localStorage
+        const savedAvatar = localStorage.getItem('userAvatar');
+        if (savedAvatar) {
+            const img = document.createElement('img');
+            img.src = savedAvatar;
+            img.alt = 'Аватар студента';
+            avatar.innerHTML = '';
+            avatar.appendChild(img);
+            avatar.classList.remove('no-photo');
+            avatar.classList.add('has-photo');
+        }
+    }
+    
+    // ... остальной код ...
+});
+// Функция для показа уведомлений (общая)
+function showNotification(message, type = 'success') {
+    const colors = {
+        success: '#28a745',
+        error: '#dc3545',
+        warning: '#ffc107',
+        info: '#17a2b8'
+    };
+    
+    const icons = {
+        success: '✓',
+        error: '✕',
+        warning: '⚠',
+        info: 'ℹ'
+    };
+    
+    // Создаем элемент уведомления
+    const notification = document.createElement('div');
+    notification.className = 'notification-toast';
+    notification.innerHTML = `
+        <div class="notification-toast-content">
+            <div class="notification-icon">${icons[type]}</div>
+            <div class="notification-message">${message}</div>
+        </div>
+    `;
+    
+    // Устанавливаем цвет в зависимости от типа
+    notification.style.backgroundColor = colors[type];
+    notification.style.borderLeftColor = colors[type] + 'cc';
+    
+    document.body.appendChild(notification);
+    
+    // Удаляем уведомление через 3 секунды
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease-in';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}

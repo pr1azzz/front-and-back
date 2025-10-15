@@ -91,9 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // В реальном приложении здесь была бы логика обновления прогресса
         // Для демонстрации просто показываем уведомление
         console.log(`Обновление прогресса для курса: ${courseName}, статус: ${status}`);
-        
-        // Здесь можно добавить логику для увеличения прогресса
-        // Например, увеличивать на 5-10% при добавлении выполненной задачи
     }
     
     // Функция для показа уведомлений
@@ -102,23 +99,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const notification = document.createElement('div');
         notification.className = 'notification-toast';
         notification.innerHTML = `
-            <div class="notification-content">
-                <p>${message}</p>
+            <div class="notification-toast-content">
+                <div class="notification-icon">✓</div>
+                <div class="notification-message">${message}</div>
             </div>
-        `;
-        
-        // Добавляем стили для уведомления
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #28a745;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 4px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            z-index: 1001;
-            animation: slideInRight 0.3s ease-out;
         `;
         
         document.body.appendChild(notification);
@@ -139,6 +123,46 @@ document.addEventListener('DOMContentLoaded', function() {
         const style = document.createElement('style');
         style.id = 'notification-styles';
         style.textContent = `
+            .notification-toast {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #28a745;
+                color: white;
+                padding: 0;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1001;
+                animation: slideInRight 0.3s ease-out;
+                min-width: 300px;
+                border-left: 4px solid #1e7e34;
+            }
+            
+            .notification-toast-content {
+                display: flex;
+                align-items: center;
+                padding: 15px 20px;
+            }
+            
+            .notification-icon {
+                background: rgba(255, 255, 255, 0.2);
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+            
+            .notification-message {
+                flex: 1;
+                font-weight: 500;
+                font-size: 0.95rem;
+            }
+            
             @keyframes slideInRight {
                 from {
                     transform: translateX(100%);
@@ -159,10 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     transform: translateX(100%);
                     opacity: 0;
                 }
-            }
-            
-            .notification-toast {
-                animation: slideInRight 0.3s ease-out;
             }
         `;
         document.head.appendChild(style);
