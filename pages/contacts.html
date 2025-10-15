@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный сайт студента - Контакты</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="icon" href="../images/logo.jpg" type="images/-icon">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🪙</span>
+                <h1>Коржов Сергей Сергеевич</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Главная</a></li>
+                    <li><a href="projects.html">Проекты</a></li>
+                    <li><a href="diary.html">Дневник</a></li>
+                    <li><a href="contacts.html" class="active">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="contacts">
+            <div class="container">
+                <h2>Свяжитесь со мной</h2>
+                <div class="contact-content">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Имя:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение:</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Отправить сообщение</button>
+                    </form>
+                    
+                    <div class="contact-info">
+                        <h3>Контакты:</h3>
+                        <p>☒ korzhov.s.s@edu.mirea.ru</p>
+                        <p>☐ GitHub: pr1azzz</p>
+                        <p>♀ Москва, Россия</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальное окно уведомления -->
+    <div id="notification" class="notification hidden">
+        <div class="notification-content">
+            <span class="close-notification">&times;</span>
+            <h3>Сообщение отправлено!</h3>
+            <p>Ваше сообщение успешно отправлено. Я свяжусь с вами в ближайшее время.</p>
+            <button class="btn" id="close-notification-btn">OK</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Контакты</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
+</html>

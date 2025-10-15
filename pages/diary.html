@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный сайт студента - Дневник</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="icon" href="../images/logo.jpg" type="images/-icon">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon" weight="50" height="50">🪙</span>
+                <h1>Коржов Сергей Сергеевич</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Главная</a></li>
+                    <li><a href="projects.html">Проекты</a></li>
+                    <li><a href="diary.html" class="active">Дневник</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="diary">
+            <div class="container">
+                <h2>Мой учебный прогресс</h2>
+                <div class="progress-timeline" id="progress-timeline">
+                    <div class="progress-item completed">
+                        <span class="date">15 дек</span>
+                        <span class="task">Верстка макета сайта ✓</span>
+                    </div>
+                    <div class="progress-item completed">
+                        <span class="date">10 дек</span>
+                        <span class="task">JavaScript основы ✓</span>
+                    </div>
+                    <div class="progress-item in-progress">
+                        <span class="date">05 дек</span>
+                        <span class="task">Работа с формами in progress</span>
+                    </div>
+                    <div class="progress-item in-progress">
+                        <span class="date">01 дек</span>
+                        <span class="task">Адаптивный дизайн in progress</span>
+                    </div>
+                </div>
+
+                <h2>Текущие курсы</h2>
+                <div class="courses">
+                    <div class="course">
+                        <span>Веб-разработка</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%;">90%</div>
+                        </div>
+                    </div>
+                    <div class="course">
+                        <span>JavaScript</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 70%;">70%</div>
+                        </div>
+                    </div>
+                    <div class="course">
+                        <span>React</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%;">50%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn add-entry" id="add-entry-btn">Добавить запись</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальное окно добавления записи -->
+    <div id="add-entry-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Добавить новую запись</h3>
+            <form id="entry-form">
+                <div class="form-group">
+                    <label for="entry-date">Дата:</label>
+                    <input type="date" id="entry-date" name="entry-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="entry-course">Курс:</label>
+                    <select id="entry-course" name="entry-course" required>
+                        <option value="">Выберите курс</option>
+                        <option value="Веб-разработка">Веб-разработка</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="React">React</option>
+                        <option value="HTML/CSS">HTML/CSS</option>
+                        <option value="Bootstrap">Bootstrap</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="entry-task">Задача:</label>
+                    <textarea id="entry-task" name="entry-task" rows="3" placeholder="Опишите выполненную задачу..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="entry-status">Статус:</label>
+                    <div class="status-options">
+                        <label>
+                            <input type="radio" name="entry-status" value="completed" checked>
+                            <span class="radio-custom"></span>
+                            Выполнено
+                        </label>
+                        <label>
+                            <input type="radio" name="entry-status" value="in-progress">
+                            <span class="radio-custom"></span>
+                            В процессе
+                        </label>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-entry">Отмена</button>
+                    <button type="submit" class="btn">Добавить запись</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Контакты</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/diary.js"></script>
+</body>
+</html>

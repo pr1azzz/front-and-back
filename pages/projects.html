@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный сайт студента - Проекты</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="icon" href="../images/logo.jpg" type="images/-icon">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🪙</span>
+                <h1>Коржов Сергей Сергеевич</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Главная</a></li>
+                    <li><a href="projects.html" class="active">Проекты</a></li>
+                    <li><a href="diary.html">Дневник</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="projects">
+            <div class="container">
+                <h2>Мои проекты</h2>
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">Все</button>
+                    <button class="filter-btn" data-filter="html">HTML</button>
+                    <button class="filter-btn" data-filter="js">JS</button>
+                    <button class="filter-btn" data-filter="react">React</button>
+                </div>
+                <div class="projects-grid" id="projects-container">
+                    <div class="project-card-large" data-category="html">
+                        <h3>Личный сайт</h3>
+                        <p>HTML, CSS</p>
+                        <div class="project-description">
+                            <p>Полностью адаптивный личный сайт-портфолио с современным дизайном.</p>
+                        </div>
+                    </div>
+                    <div class="project-card-large" data-category="js">
+                        <h3>Todo-приложение</h3>
+                        <p>JavaScript</p>
+                        <div class="project-description">
+                            <p>Интерактивное приложение для управления задачами с локальным хранилищем.</p>
+                        </div>
+                    </div>
+                    <div class="project-card-large" data-category="react">
+                        <h3>Интернет-магазин</h3>
+                        <p>React</p>
+                        <div class="project-description">
+                            <p>Полнофункциональный интернет-магазин с корзиной покупок и системой фильтрации.</p>
+                        </div>
+                    </div>
+                    <div class="project-card-large" data-category="js">
+                        <h3>Игра "Память"</h3>
+                        <p>JavaScript</p>
+                        <div class="project-description">
+                            <p>Классическая игра на запоминание карточек с системой подсчета очков.</p>
+                        </div>
+                    </div>
+                    <div class="project-card-large" data-category="react">
+                        <h3>Погодное приложение</h3>
+                        <p>React</p>
+                        <div class="project-description">
+                            <p>Приложение для просмотра погоды с использованием открытого API.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Контакты</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
+</html>
