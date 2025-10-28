@@ -2,75 +2,153 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Личный сайт студента - Дневник</title>
     <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="icon" href="../images/logo.jpg" type="images/-icon">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/logo.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/logo.jpg">
+    <meta name="theme-color" content="#4a6fa5">
 </head>
-<body>
-    <header>
+<body class="page">
+    <!-- Skip link для доступности -->
+    <a href="#main" class="skip-link">Перейти к основному содержимому</a>
+
+    <header class="header">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon" weight="50" height="50">🪙</span>
-                <h1>Коржов Сергей Сергеевич</h1>
+                <div class="logo-icon">[SSS]</div>
+                <h1 class="logo-text">Сергей Коржов</h1>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Главная</a></li>
-                    <li><a href="projects.html">Проекты</a></li>
-                    <li><a href="diary.html" class="active">Дневник</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
-                </ul>
-            </nav>
+          <nav class="nav" aria-label="Основная навигация">
+    <ul class="nav-list">
+        <li><a href="../index.html" class="nav-link">Главная</a></li>
+        <li><a href="projects.html" class="nav-link">Проекты</a></li>
+        <li><a href="diary.html" class="nav-link">Дневник</a></li>
+        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+        <li><a href="../adaptive-images-demo.html" class="nav-link">Адаптивность</a></li>
+    </ul>
+</nav>
         </div>
     </header>
 
-    <main>
-        <section class="diary">
+    <main id="main" class="main">
+        <section class="diary section">
             <div class="container">
-                <h2>Мой учебный прогресс</h2>
-                <div class="progress-timeline" id="progress-timeline">
-                    <div class="progress-item completed">
-                        <span class="date">15 дек</span>
-                        <span class="task">Верстка макета сайта ✓</span>
-                    </div>
-                    <div class="progress-item completed">
-                        <span class="date">10 дек</span>
-                        <span class="task">JavaScript основы ✓</span>
-                    </div>
-                    <div class="progress-item in-progress">
-                        <span class="date">05 дек</span>
-                        <span class="task">Работа с формами in progress</span>
-                    </div>
-                    <div class="progress-item in-progress">
-                        <span class="date">01 дек</span>
-                        <span class="task">Адаптивный дизайн in progress</span>
+                <h2 class="section-title">Мой учебный прогресс</h2>
+                
+                <!-- Прогресс по курсам -->
+                <div class="courses-progress">
+                    <h3 class="subsection-title">Текущие курсы</h3>
+                    <div class="courses-area">
+                        <div class="courses-grid">
+                            <article class="course-card">
+                                <div class="course-image">
+                                    <img src="../images/courses/web-dev-300.jpg"
+                                         srcset="../images/courses/web-dev-300.jpg 300w,
+                                                 ../images/courses/web-dev-450.jpg 450w,
+                                                 ../images/courses/web-dev-600.jpg 600w"
+                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                         width="300" height="200"
+                                         alt="Веб-разработка"
+                                         loading="lazy">
+                                </div>
+                                <div class="course-content">
+                                    <h4 class="course-title">Веб-разработка</h4>
+                                    <div class="progress-container">
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <span class="progress-text">90%</span>
+                                    </div>
+                                    <p class="course-description">Изучение HTML, CSS, JavaScript и современных фреймворков</p>
+                                </div>
+                            </article>
+
+                            <article class="course-card">
+                                <div class="course-image">
+<!-- Вместо простого img -->
+<img src="../images/projects/project-1-300.jpg"
+     srcset="../images/courses/react-300.jpg 300w,
+             ../images/courses/react-450.jpg 450w,
+             ../images/courses/react-600.jpg 600w"
+     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+     width="300" height="200"
+     alt="Скриншот личного сайта"
+     loading="lazy"
+     class="project-image">
+                                </div>
+                                <div class="course-content">
+                                    <h4 class="course-title">JavaScript</h4>
+                                    <div class="progress-container">
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <span class="progress-text">70%</span>
+                                    </div>
+                                    <p class="course-description">Основы JavaScript, асинхронное программирование, работа с DOM</p>
+                                </div>
+                            </article>
+
+                            <article class="course-card">
+                                <div class="course-image">
+                                    <img src="../images/courses/react-300.jpg"
+                                         srcset="../images/courses/react-3001.jpg 300w,
+                                                 ../images/courses/react-4501.jpg 450w,
+                                                 ../images/courses/react-6001.jpg 600w"
+                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                         width="300" height="200"
+                                         alt="React"
+                                         loading="lazy">
+                                </div>
+                                <div class="course-content">
+                                    <h4 class="course-title">React</h4>
+                                    <div class="progress-container">
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <span class="progress-text">50%</span>
+                                    </div>
+                                    <p class="course-description">React компоненты, хуки, управление состоянием</p>
+                                </div>
+                            </article>
+                        </div>
                     </div>
                 </div>
 
-                <h2>Текущие курсы</h2>
-                <div class="courses">
-                    <div class="course">
-                        <span>Веб-разработка</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%;">90%</div>
+                <!-- Хронология прогресса -->
+                <div class="progress-timeline-section">
+                    <h3 class="subsection-title">Хронология обучения</h3>
+                    <div class="progress-timeline" id="progress-timeline">
+                        <div class="progress-item completed">
+                            <span class="date">15 дек</span>
+                            <span class="task">Верстка макета сайта ✓</span>
+                            <span class="course-tag">Веб-разработка</span>
                         </div>
-                    </div>
-                    <div class="course">
-                        <span>JavaScript</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 70%;">70%</div>
+                        <div class="progress-item completed">
+                            <span class="date">10 дек</span>
+                            <span class="task">JavaScript основы ✓</span>
+                            <span class="course-tag">JavaScript</span>
                         </div>
-                    </div>
-                    <div class="course">
-                        <span>React</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 50%;">50%</div>
+                        <div class="progress-item in-progress">
+                            <span class="date">05 дек</span>
+                            <span class="task">Работа с формами in progress</span>
+                            <span class="course-tag">JavaScript</span>
+                        </div>
+                        <div class="progress-item in-progress">
+                            <span class="date">01 дек</span>
+                            <span class="task">Адаптивный дизайн in progress</span>
+                            <span class="course-tag">Веб-разработка</span>
                         </div>
                     </div>
                 </div>
-                
-                <button class="btn add-entry" id="add-entry-btn">Добавить запись</button>
+
+                <!-- Кнопка добавления записи -->
+                <div class="add-entry-section">
+                    <button class="button" id="add-entry-btn">Добавить запись</button>
+                </div>
             </div>
         </section>
     </main>
@@ -79,15 +157,20 @@
     <div id="add-entry-modal" class="modal hidden">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h3>Добавить новую запись</h3>
-            <form id="entry-form">
+            <h3 class="modal-title">Добавить новую запись</h3>
+            <form id="entry-form" novalidate>
                 <div class="form-group">
-                    <label for="entry-date">Дата:</label>
-                    <input type="date" id="entry-date" name="entry-date" required>
+                    <label for="entry-date" class="form-label">Дата:</label>
+                    <input type="date" id="entry-date" name="entry-date" class="form-input" required
+                           aria-describedby="date-hint">
+                    <small id="date-hint" class="form-hint">Дата выполнения задачи</small>
+                    <div id="entry-date-error" class="form-error" role="alert" aria-live="polite"></div>
                 </div>
+                
                 <div class="form-group">
-                    <label for="entry-course">Курс:</label>
-                    <select id="entry-course" name="entry-course" required>
+                    <label for="entry-course" class="form-label">Курс:</label>
+                    <select id="entry-course" name="entry-course" class="form-input" required
+                            aria-describedby="course-hint">
                         <option value="">Выберите курс</option>
                         <option value="Веб-разработка">Веб-разработка</option>
                         <option value="JavaScript">JavaScript</option>
@@ -95,37 +178,53 @@
                         <option value="HTML/CSS">HTML/CSS</option>
                         <option value="Bootstrap">Bootstrap</option>
                     </select>
+                    <small id="course-hint" class="form-hint">Выберите соответствующий курс</small>
+                    <div id="entry-course-error" class="form-error" role="alert" aria-live="polite"></div>
                 </div>
+                
                 <div class="form-group">
-                    <label for="entry-task">Задача:</label>
-                    <textarea id="entry-task" name="entry-task" rows="3" placeholder="Опишите выполненную задачу..." required></textarea>
+                    <label for="entry-task" class="form-label">Задача:</label>
+                    <textarea id="entry-task" name="entry-task" class="form-textarea" rows="3" 
+                              placeholder="Опишите выполненную задачу..." required
+                              aria-describedby="task-hint"></textarea>
+                    <small id="task-hint" class="form-hint">Подробное описание выполненной работы</small>
+                    <div id="entry-task-error" class="form-error" role="alert" aria-live="polite"></div>
                 </div>
+                
                 <div class="form-group">
-                    <label for="entry-status">Статус:</label>
-                    <div class="status-options">
-                        <label>
-                            <input type="radio" name="entry-status" value="completed" checked>
+                    <label class="form-label">Статус:</label>
+                    <div class="status-options" role="radiogroup" aria-labelledby="status-label">
+                        <label class="status-option">
+                            <input type="radio" name="entry-status" value="completed" checked
+                                   aria-describedby="completed-hint">
                             <span class="radio-custom"></span>
                             Выполнено
                         </label>
-                        <label>
-                            <input type="radio" name="entry-status" value="in-progress">
+                        <label class="status-option">
+                            <input type="radio" name="entry-status" value="in-progress"
+                                   aria-describedby="progress-hint">
                             <span class="radio-custom"></span>
                             В процессе
                         </label>
                     </div>
+                    <small id="completed-hint" class="form-hint">Задача полностью завершена</small>
+                    <small id="progress-hint" class="form-hint">Задача в процессе выполнения</small>
                 </div>
+                
                 <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" id="cancel-entry">Отмена</button>
-                    <button type="submit" class="btn">Добавить запись</button>
+                    <button type="button" class="button button-secondary" id="cancel-entry">Отмена</button>
+                    <button type="submit" class="button">Добавить запись</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Контакты</p>
+            <p>&copy; 2025 <a href="https://pr1azzz.github.io/front-and-back/" target="_blank" class="footer-link">Мой сайт</a> | 
+               <a href="https://github.com/pr1azzz" target="_blank" class="footer-link">GitHub</a> |
+               <a href="../adaptive-images-demo.html" class="footer-link">Адаптивность</a>
+            </p>
         </div>
     </footer>
 

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Адаптивные изображения - Демо | Личный сайт студента</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icons/icon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
+    <meta name="theme-color" content="#4a6fa5">
+</head>
+<body class="page">
+    <!-- Skip link для доступности -->
+    <a href="#main" class="skip-link">Перейти к основному содержимому</a>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">[SSS]</div>
+                <h1 class="logo-text">Сергей Коржов</h1>
+            </div>
+            <nav class="nav" aria-label="Основная навигация">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="pages/projects.html" class="nav-link">Проекты</a></li>
+                    <li><a href="pages/diary.html" class="nav-link">Дневник</a></li>
+                    <li><a href="pages/contacts.html" class="nav-link">Контакты</a></li>
+                    <li><a href="adaptive-images-demo.html" class="nav-link active">Адаптивность</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="container">
+            <!-- Герой секция демо -->
+            <section class="hero-demo full-bleed">
+                <div class="container">
+                    <h2 class="hero-demo-title">Демонстрация адаптивных изображений</h2>
+                    <p class="hero-demo-subtitle">Современные техники responsive images в действии</p>
+                </div>
+            </section>
+
+            <!-- Секция 1: Базовое адаптивное изображение -->
+            <section class="demo-section section">
+                <h2 class="section-title">1. Базовое адаптивное изображение</h2>
+                <div class="image-demo-container">
+                    <img src="images/adaptive-demo/landscape.jpg"
+                         alt="Красивый пейзаж с горами и озером"
+                         class="responsive-image-demo"
+                         loading="lazy">
+                </div>
+                <div class="explanation">
+                    <h3>Что происходит:</h3>
+                    <ul>
+                        <li>Изображение занимает 100% ширины контейнера</li>
+                        <li>Высота автоматически рассчитывается для сохранения пропорций</li>
+                        <li>Работает на всех устройствах</li>
+                        <li>Lazy loading для оптимизации загрузки</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Секция 2: Picture element с форматами -->
+            <section class="demo-section section">
+                <h2 class="section-title">2. Picture element с форматами</h2>
+                <div class="image-demo-container">
+                    <picture>
+                        <!-- WebP для современных браузеров -->
+                        <source srcset="images/adaptive-demo/portrait.webp" type="image/webp">
+                        <!-- JPEG для старых браузеров -->
+                        <source srcset="images/adaptive-demo/portrait.jpg" type="image/jpeg">
+                        <!-- Фолбэк -->
+                        <img src="images/adaptive-demo/portrait.jpg"
+                             alt="Портрет человека"
+                             class="responsive-image-demo"
+                             loading="lazy">
+                    </picture>
+                </div>
+                <div class="explanation">
+                    <h3>Что происходит:</h3>
+                    <ul>
+                        <li>Браузер выбирает лучший формат (WebP или JPEG)</li>
+                        <li>WebP на 25-35% меньше по размеру при том же качестве</li>
+                        <li>Автоматическое переключение между форматами</li>
+                        <li>Фолбэк для старых браузеров</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Секция 3: Разные изображения для разных размеров экрана -->
+            <section class="demo-section section">
+                <h2 class="section-title">3. Разные изображения для разных экранов</h2>
+                <div class="image-demo-container">
+                    <picture>
+                        <!-- Большое изображение для десктопов -->
+                        <source media="(min-width: 1200px)" srcset="images/adaptive-demo/wide-desktop.jpg">
+                        <!-- Среднее для планшетов -->
+                        <source media="(min-width: 768px)" srcset="images/adaptive-demo/tablet.jpg">
+                        <!-- Маленькое для мобильных -->
+                        <img src="images/adaptive-demo/mobile.jpg"
+                             alt="Адаптивное изображение для разных устройств"
+                             class="responsive-image-demo"
+                             loading="lazy">
+                    </picture>
+                </div>
+                <div class="explanation">
+                    <h3>Что происходит:</h3>
+                    <ul>
+                        <li><strong>Десктопы</strong> (1200px+): wide-desktop.jpg - 1200px</li>
+                        <li><strong>Планшеты</strong> (768px-1199px): tablet.jpg - 800px</li>
+                        <li><strong>Мобильные</strong> (до 767px): mobile.jpg - 400px</li>
+                        <li>Браузер сам выбирает подходящее изображение</li>
+                        <li>Экономия трафика на мобильных устройствах</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Секция 4: Retina display поддержка -->
+            <section class="demo-section section">
+                <h2 class="section-title">4. Поддержка Retina дисплеев</h2>
+                <div class="retina-demo-container">
+                    <img src="images/adaptive-demo/icon@1x.png"
+                         srcset="images/adaptive-demo/icon@1x.png 1x, images/adaptive-demo/icon@2x.png 2x"
+                         alt="Иконка с поддержкой Retina"
+                         class="retina-image-demo">
+                </div>
+                <div class="explanation">
+                    <h3>Что происходит:</h3>
+                    <ul>
+                        <li><strong>Обычные экраны</strong>: icon@1x.png (96dpi)</li>
+                        <li><strong>Retina экраны</strong>: icon@2x.png (192dpi+)</li>
+                        <li>Автоматическое определение плотности пикселей</li>
+                        <li>Четкое отображение на высокоплотных дисплеях</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Секция 5: Object-fit демонстрация -->
+            <section class="demo-section section">
+                <h2 class="section-title">5. Object-fit свойства</h2>
+                <div class="object-fit-demo-grid">
+                    <div class="object-fit-item">
+                        <div class="object-fit-container">
+                            <img src="images/adaptive-demo/square.jpg"
+                                 alt="Cover пример"
+                                 class="object-fit-cover-demo">
+                        </div>
+                        <span class="object-fit-label">object-fit: cover</span>
+                    </div>
+                    <div class="object-fit-item">
+                        <div class="object-fit-container">
+                            <img src="images/adaptive-demo/square.jpg"
+                                 alt="Contain пример"
+                                 class="object-fit-contain-demo">
+                        </div>
+                        <span class="object-fit-label">object-fit: contain</span>
+                    </div>
+                    <div class="object-fit-item">
+                        <div class="object-fit-container">
+                            <img src="images/adaptive-demo/square.jpg"
+                                 alt="Fill пример"
+                                 class="object-fit-fill-demo">
+                        </div>
+                        <span class="object-fit-label">object-fit: fill</span>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h3>Что происходит:</h3>
+                    <ul>
+                        <li><strong>cover</strong> - заполняет контейнер, обрезая края (идеально для галерей)</li>
+                        <li><strong>contain</strong> - вписывает полностью, могут быть поля (сохраняет пропорции)</li>
+                        <li><strong>fill</strong> - растягивает, искажая пропорции (используется редко)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Секция 6: Адаптивная галерея -->
+            <section class="demo-section section">
+                <h2 class="section-title">6. Адаптивная галерея</h2>
+                <div class="adaptive-gallery">
+                    <article class="gallery-item">
+                        <img src="images/adaptive-demo/gallery1.jpg"
+                             srcset="images/adaptive-demo/gallery1.jpg 1x, images/adaptive-demo/gallery1@2x.jpg 2x"
+                             alt="Горный пейзаж"
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="gallery-caption">Картинка №1</div>
+                    </article>
+                    <article class="gallery-item">
+                        <img src="images/adaptive-demo/gallery2.jpg"
+                             srcset="images/adaptive-demo/gallery2.jpg 1x, images/adaptive-demo/gallery2@2x.jpg 2x"
+                             alt="Городской вид"
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="gallery-caption">Картинка №2</div>
+                    </article>
+                    <article class="gallery-item">
+                        <img src="images/adaptive-demo/gallery3.jpg"
+                             srcset="images/adaptive-demo/gallery3.jpg 1x, images/adaptive-demo/gallery3@2x.jpg 2x"
+                             alt="Природа"
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="gallery-caption">Картинка №3</div>
+                    </article>
+                    <article class="gallery-item">
+                        <img src="images/adaptive-demo/gallery4.jpg"
+                             srcset="images/adaptive-demo/gallery4.jpg 1x, images/adaptive-demo/gallery4@2x.jpg 2x"
+                             alt="Архитектура"
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="gallery-caption">Картинка №4 </div>
+                    </article>
+                </div>
+                <div class="explanation">
+                    <h3>Что происходит:</h3>
+                    <ul>
+                        <li><strong>На десктопах</strong>: 4 изображения в ряд</li>
+                        <li><strong>На планшетах</strong>: 2 изображения в ряд</li>
+                        <li><strong>На мобильных</strong>: 1 изображение в ряд</li>
+                        <li>Поддержка Retina дисплеев через srcset</li>
+                        <li>Lazy loading для оптимизации производительности</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 <a href="https://pr1azzz.github.io/front-and-back/" target="_blank" class="footer-link">Мой сайт</a> | 
+               <a href="https://github.com/pr1azzz" target="_blank" class="footer-link">GitHub</a> |
+               <a href="adaptive-images-demo.html" class="footer-link">Адаптивность</a>
+            </p>
+            <p class="footer-hint">Измените размер окна браузера чтобы увидеть адаптивность в действии!</p>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

@@ -2,97 +2,127 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Личный сайт студента - Главная</title>
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="icon" href="images/logo.jpg" type="images/-icon">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo.jpg">
+    <meta name="theme-color" content="#4a6fa5">
 </head>
-<body>
-    <header>
+<body class="page">
+    <!-- Skip link для доступности -->
+    <a href="#main" class="skip-link">Перейти к основному содержимому</a>
+
+    <header class="header">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon">🪙</span>
-                <h1>Коржов Сергей Сергеевич</h1>
+                <div class="logo-icon">[SSS]</div>
+                <h1 class="logo-text">Сергей Коржов</h1>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="active">Главная</a></li>
-                    <li><a href="pages/projects.html">Проекты</a></li>
-                    <li><a href="pages/diary.html">Дневник</a></li>
-                    <li><a href="pages/contacts.html">Контакты</a></li>
+            <nav class="nav" aria-label="Основная навигация">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link active">Главная</a></li>
+                    <li><a href="pages/projects.html" class="nav-link">Проекты</a></li>
+                    <li><a href="pages/diary.html" class="nav-link">Дневник</a></li>
+                    <li><a href="pages/contacts.html" class="nav-link">Контакты</a></li>
+                    <li><a href="adaptive-images-demo.html" class="nav-link">Адаптивность</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
+    <main id="main" class="main">
+        <!-- Герой секция -->
+        <section class="hero full-bleed">
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
-                        <h2>Привет! Я студент</h2>
-                        <p class="group">Группы ЭФБО-13-24</p>
-                        <p class="interests">Увлекаюсь веб-разработкой</p>
-                        <a href="assets/resume.pdf" class="btn" download>Скачать резюме</a>
+                        <h2 class="hero-greeting">Привет! Я студент</h2>
+                        <p class="hero-group">Коржов Сергей, группы ЭФБО-13-24</p>
+                        <p class="hero-interests">Увлекаюсь веб-разработкой</p>
+                        <a href="assets/resume.pdf" class="button" download>
+                            Скачать резюме
+                        </a>
                     </div>
- <div class="hero-image">
-    <div class="avatar-container">
-        <div id="avatar" class="avatar no-photo">
-            <span class="no-photo-text">нет фотографии</span>
-        </div>
-        <div class="avatar-upload">
-            <label for="avatar-input" class="upload-btn">Загрузить аватар</label>
-            <input type="file" id="avatar-input" accept="image/*" style="display: none;">
-        </div>
-    </div>
-</div>
+                    <div class="hero-image">
+                        <div class="avatar-container">
+                            <div class="avatar-wrapper" id="avatar-wrapper">
+                                <!-- Здесь будет динамически отображаться аватарка или плейсхолдер -->
+                            </div>
+                            <div class="avatar-upload">
+                                <label for="avatar-input" class="upload-btn">Загрузить аватар</label>
+                                <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="skills">
+        <!-- Секция навыков -->
+        <section class="skills section">
             <div class="container">
-                <h2>Мои навыки</h2>
+                <h2 class="section-title">Мои навыки</h2>
                 <div class="skill">
-                    <span>HTML/CSS</span>
+                    <span class="skill-name">HTML/CSS</span>
                     <div class="skill-bar">
                         <div class="skill-level" style="width: 90%;">90%</div>
                     </div>
                 </div>
                 <div class="skill">
-                    <span>JavaScript</span>
+                    <span class="skill-name">JavaScript</span>
                     <div class="skill-bar">
                         <div class="skill-level" style="width: 80%;">80%</div>
                     </div>
                 </div>
                 <div class="skill">
-                    <span>Bootstrap</span>
+                    <span class="skill-name">Bootstrap</span>
                     <div class="skill-bar">
                         <div class="skill-level" style="width: 85%;">85%</div>
                     </div>
                 </div>
                 <div class="skill">
-                    <span>React</span>
+                    <span class="skill-name">React</span>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 60%;">60%</div>
+                        <div class="skill-level" style="width: 20%;">20%</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="projects-preview">
+        <!-- Предпросмотр проектов -->
+        <section class="projects-preview section">
             <div class="container">
-                <h2>Лучшие проекты</h2>
-                <div class="projects-grid">
-                    <div class="project-card">Сайт-визитка</div>
-                    <div class="project-card">Форма обратной связи</div>
-                    <div class="project-card">Магазин с товарами</div>
+                <h2 class="section-title">Лучшие проекты</h2>
+                <div class="projects-area">
+                    <div class="projects-preview-grid">
+                        <article class="project-card">
+                            <h3 class="project-card-title">Личный сайт</h3>
+                            <p class="project-card-description">Адаптивный сайт-портфолио на HTML/CSS.</p>
+                        </article>
+                        <article class="project-card">
+                            <h3 class="project-card-title">Форма обратной связи</h3>
+                            <p class="project-card-description">Приложение для отправки формы.</p>
+                        </article>
+                        <article class="project-card">
+                            <h3 class="project-card-title">Интернет-магазин</h3>
+                            <p class="project-card-description">Небольшой магазин, на пару товаров.</p>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Контакты</p>
+            <p>&copy; 2025 <a href="https://pr1azzz.github.io/front-and-back/" target="_blank" class="footer-link">Мой сайт</a> | 
+               <a href="https://github.com/pr1azzz" target="_blank" class="footer-link">GitHub</a> |
+               <a href="adaptive-images-demo.html" class="footer-link">Адаптивность</a>
+            </p>
         </div>
     </footer>
 

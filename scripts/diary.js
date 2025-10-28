@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Устанавливаем сегодняшнюю дату по умолчанию
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('entry-date').value = today;
+            // Фокусируемся на первом поле
+            document.getElementById('entry-date').focus();
         });
     }
     
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeEntryModal() {
         addEntryModal.classList.add('hidden');
         entryForm.reset();
+        clearAllErrors();
     }
     
     if (closeModal) {
@@ -40,10 +43,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Закрытие по Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !addEntryModal.classList.contains('hidden')) {
+            closeEntryModal();
+        }
+    });
+    
+    // Валидация формы
+    const formInputs = entryForm.querySelectorAll('input, select, textarea');
+    formInputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearFieldError);
+    });
+    
+    function validateField(e) {
+        const field = e.target;
+        const errorElement = document.getElementById(`${field.id}-error`);
+        
+        clearFieldError({ target: field });
+        
+        if (field.validity.valueMissing) {
+            showFieldError(field, errorElement, 'Это поле обязательно для заполнения');
+        } else if (field.type === 'date' && field.validity.badInput) {
+            showFieldError(field, errorElement, 'Введите корректную дату');
+        }
+    }
+    
+    function showFieldError(field, errorElement, message) {
+        field.setAttribute('aria-invalid', 'true');
+        errorElement.textContent = message;
+        field.style.borderColor = '#dc3545';
+    }
+    
+    function clearFieldError(e) {
+        const field = e.target;
+        const errorElement = document.getElementById(`${field.id}-error`);
+        
+        field.setAttribute('aria-invalid', 'false');
+        errorElement.textContent = '';
+        field.style.borderColor = '';
+    }
+    
+    function clearAllErrors() {
+        formInputs.forEach(input => {
+            const errorElement = document.getElementById(`${input.id}-error`);
+            input.setAttribute('aria-invalid', 'false');
+            if (errorElement) errorElement.textContent = '';
+            input.style.borderColor = '';
+        });
+    }
+    
     // Обработка отправки формы
     if (entryForm && progressTimeline) {
         entryForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Валидируем все поля
+            let isValid = true;
+            formInputs.forEach(input => {
+                const event = new Event('blur');
+                input.dispatchEvent(event);
+                if (input.getAttribute('aria-invalid') === 'true') {
+                    isValid = false;
+                }
+            });
+            
+            if (!isValid) {
+                // Фокусируемся на первом поле с ошибкой
+                const firstError = entryForm.querySelector('[aria-invalid="true"]');
+                if (firstError) {
+                    firstError.focus();
+                }
+                return;
+            }
             
             // Получаем данные из формы
             const date = document.getElementById('entry-date').value;
@@ -61,7 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const statusIcon = status === 'completed' ? '✓' : 'in progress';
             newEntry.innerHTML = `
                 <span class="date">${formattedDate}</span>
-                <span class="task">${course}: ${task} ${statusIcon}</span>
+                <span class="task">${task} ${statusIcon}</span>
+                <span class="course-tag">${course}</span>
             `;
             
             // Добавляем запись в начало списка
@@ -74,7 +148,10 @@ document.addEventListener('DOMContentLoaded', function() {
             closeEntryModal();
             
             // Показываем уведомление об успешном добавлении
-            showNotification('Запись успешно добавлена в дневник!');
+            showNotification('Запись успешно добавлена в дневник!', 'success');
+            
+            // Прокручиваем к новой записи
+            newEntry.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
     }
     
@@ -88,22 +165,50 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Функция для обновления прогресса курсов
     function updateCourseProgress(courseName, status) {
-        // В реальном приложении здесь была бы логика обновления прогресса
-        // Для демонстрации просто показываем уведомление
-        console.log(`Обновление прогресса для курса: ${courseName}, статус: ${status}`);
+        // Находим карточку курса
+        const courseCards = document.querySelectorAll('.course-card');
+        courseCards.forEach(card => {
+            const title = card.querySelector('.course-title').textContent;
+            if (title === courseName) {
+                const progressBar = card.querySelector('.progress');
+                const progressText = card.querySelector('.progress-text');
+                
+                let currentProgress = parseInt(progressBar.style.width);
+                if (isNaN(currentProgress)) currentProgress = 0;
+                
+                // Увеличиваем прогресс на 5% за выполненную задачу
+                if (status === 'completed') {
+                    const newProgress = Math.min(currentProgress + 5, 100);
+                    progressBar.style.width = `${newProgress}%`;
+                    progressBar.setAttribute('aria-valuenow', newProgress);
+                    progressText.textContent = `${newProgress}%`;
+                }
+            }
+        });
     }
     
     // Функция для показа уведомлений
-    function showNotification(message) {
+    function showNotification(message, type = 'success') {
         // Создаем элемент уведомления
         const notification = document.createElement('div');
         notification.className = 'notification-toast';
+        notification.setAttribute('role', 'status');
+        notification.setAttribute('aria-live', 'polite');
         notification.innerHTML = `
             <div class="notification-toast-content">
-                <div class="notification-icon">✓</div>
+                <div class="notification-icon">${type === 'success' ? '✓' : '⚠'}</div>
                 <div class="notification-message">${message}</div>
             </div>
         `;
+        
+        // Устанавливаем цвет в зависимости от типа
+        if (type === 'success') {
+            notification.style.backgroundColor = '#28a745';
+            notification.style.borderLeftColor = '#28a745';
+        } else {
+            notification.style.backgroundColor = '#dc3545';
+            notification.style.borderLeftColor = '#dc3545';
+        }
         
         document.body.appendChild(notification);
         
@@ -116,75 +221,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, 300);
         }, 3000);
-    }
-    
-    // Добавляем стили для анимации уведомления
-    if (!document.querySelector('#notification-styles')) {
-        const style = document.createElement('style');
-        style.id = 'notification-styles';
-        style.textContent = `
-            .notification-toast {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #28a745;
-                color: white;
-                padding: 0;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                z-index: 1001;
-                animation: slideInRight 0.3s ease-out;
-                min-width: 300px;
-                border-left: 4px solid #1e7e34;
-            }
-            
-            .notification-toast-content {
-                display: flex;
-                align-items: center;
-                padding: 15px 20px;
-            }
-            
-            .notification-icon {
-                background: rgba(255, 255, 255, 0.2);
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-right: 15px;
-                font-weight: bold;
-                font-size: 1.1rem;
-            }
-            
-            .notification-message {
-                flex: 1;
-                font-weight: 500;
-                font-size: 0.95rem;
-            }
-            
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideOutRight {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     }
 });

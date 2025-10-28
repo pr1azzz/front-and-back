@@ -2,86 +2,143 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Личный сайт студента - Проекты</title>
     <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="icon" href="../images/logo.jpg" type="images/-icon">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/logo.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/logo.jpg">
+    <meta name="theme-color" content="#4a6fa5">
 </head>
-<body>
-    <header>
+<body class="page">
+    <!-- Skip link для доступности -->
+    <a href="#main" class="skip-link">Перейти к основному содержимому</a>
+
+    <header class="header">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon">🪙</span>
-                <h1>Коржов Сергей Сергеевич</h1>
+                <div class="logo-icon">[SSS]</div>
+                <h1 class="logo-text">Сергей Коржов</h1>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Главная</a></li>
-                    <li><a href="projects.html" class="active">Проекты</a></li>
-                    <li><a href="diary.html">Дневник</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
+            <nav class="nav" aria-label="Основная навигация">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Главная</a></li>
+                    <li><a href="projects.html" class="nav-link active">Проекты</a></li>
+                    <li><a href="diary.html" class="nav-link">Дневник</a></li>
+                    <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                    <li><a href="../adaptive-images-demo.html" class="nav-link">Адаптивность</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="projects">
+    <main id="main" class="main">
+        <section class="projects section">
             <div class="container">
-                <h2>Мои проекты</h2>
+                <h2 class="section-title">Мои проекты</h2>
+                
                 <div class="filter-tabs">
                     <button class="filter-btn active" data-filter="all">Все</button>
-                    <button class="filter-btn" data-filter="html">HTML</button>
-                    <button class="filter-btn" data-filter="js">JS</button>
+                    <button class="filter-btn" data-filter="html">HTML/CSS</button>
+                    <button class="filter-btn" data-filter="js">JavaScript</button>
                     <button class="filter-btn" data-filter="react">React</button>
                 </div>
-                <div class="projects-grid" id="projects-container">
-                    <div class="project-card-large" data-category="html">
-                        <h3>Личный сайт</h3>
-                        <p>HTML, CSS</p>
-                        <div class="project-description">
-                            <p>Полностью адаптивный личный сайт-портфолио с современным дизайном.</p>
-                        </div>
-                    </div>
-                    <div class="project-card-large" data-category="js">
-                        <h3>Todo-приложение</h3>
-                        <p>JavaScript</p>
-                        <div class="project-description">
-                            <p>Интерактивное приложение для управления задачами с локальным хранилищем.</p>
-                        </div>
-                    </div>
-                    <div class="project-card-large" data-category="react">
-                        <h3>Интернет-магазин</h3>
-                        <p>React</p>
-                        <div class="project-description">
-                            <p>Полнофункциональный интернет-магазин с корзиной покупок и системой фильтрации.</p>
-                        </div>
-                    </div>
-                    <div class="project-card-large" data-category="js">
-                        <h3>Игра "Память"</h3>
-                        <p>JavaScript</p>
-                        <div class="project-description">
-                            <p>Классическая игра на запоминание карточек с системой подсчета очков.</p>
-                        </div>
-                    </div>
-                    <div class="project-card-large" data-category="react">
-                        <h3>Погодное приложение</h3>
-                        <p>React</p>
-                        <div class="project-description">
-                            <p>Приложение для просмотра погоды с использованием открытого API.</p>
-                        </div>
+
+                <div class="projects-area">
+                    <div class="projects-grid" id="projects-container">
+                        <!-- Проект 1 - Личный сайт -->
+                        <article class="project-card-large" data-category="html">
+                            <div class="project-image">
+                                <img src="../images/projects/personal-site.jpg"
+                                     alt="Скриншот личного сайта-портфолио"
+                                     loading="lazy"
+                                     class="project-img">
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-card-title">Личный сайт-портфолио</h3>
+                                <p class="project-card-tech">HTML, CSS, JavaScript</p>
+                                <p class="project-card-description">Адаптивный личный сайт с современным дизайном, семантической версткой и оптимизацией для мобильных устройств. Включает главную страницу, портфолио проектов и контактную форму.</p>
+                                <div class="project-links">
+                                    <a href="#" class="button button-sm">Демо</a>
+                                    <a href="#" class="button button-sm button-outline">Код</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Проект 2 - Todo приложение -->
+                        <article class="project-card-large" data-category="js">
+                            <div class="project-image">
+                                <img src="../images/projects/todo-app.jpg"
+                                     alt="Скриншот Todo приложения"
+                                     loading="lazy"
+                                     class="project-img">
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-card-title">Todo приложение</h3>
+                                <p class="project-card-tech">JavaScript</p>
+                                <p class="project-card-description">Интерактивное приложение для управления задачами с возможностью добавления, редактирования, удаления и фильтрации задач. Данные сохраняются в локальном хранилище браузера.</p>
+                                <div class="project-links">
+                                    <a href="#" class="button button-sm">Демо</a>
+                                    <a href="#" class="button button-sm button-outline">Код</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Проект 3 - Погодное приложение -->
+                        <article class="project-card-large" data-category="js">
+                            <div class="project-image">
+                                <img src="../images/projects/weather-app.jpg"
+                                     alt="Скриншот погодного приложения"
+                                     loading="lazy"
+                                     class="project-img">
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-card-title">Погодное приложение</h3>
+                                <p class="project-card-tech">JavaScript</p>
+                                <p class="project-card-description">Приложение для просмотра текущей погоды и прогноза с использованием открытого API. Поддерживает геолокацию, поиск по городам и красивый адаптивный интерфейс.</p>
+                                <div class="project-links">
+                                    <a href="#" class="button button-sm">Демо</a>
+                                    <a href="#" class="button button-sm button-outline">Код</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Проект 4 - Интернет-магазин -->
+                        <article class="project-card-large" data-category="react">
+                            <div class="project-image">
+                                <img src="../images/projects/ecommerce.jpg"
+                                     alt="Скриншот интернет-магазина"
+                                     loading="lazy"
+                                     class="project-img">
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-card-title">Интернет-магазин</h3>
+                                <p class="project-card-tech">React</p>
+                                <p class="project-card-description">Полнофункциональный интернет-магазин с каталогом товаров, корзиной покупок, системой фильтрации и панелью администратора для управления контентом.</p>
+                                <div class="project-links">
+                                    <a href="#" class="button button-sm">Демо</a>
+                                    <a href="#" class="button button-sm button-outline">Код</a>
+                                </div>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Контакты</p>
+            <p>&copy; 2025 <a href="https://pr1azzz.github.io/front-and-back/" target="_blank" class="footer-link">Мой сайт</a> | 
+               <a href="https://github.com/pr1azzz" target="_blank" class="footer-link">GitHub</a> |
+               <a href="../adaptive-images-demo.html" class="footer-link">Адаптивность</a>
+            </p>
         </div>
     </footer>
 
-    <script src="../scripts/main.js"></script>
+    <!-- Скрипт фильтрации -->
+    <script src="../scripts/projects-filter.js"></script>
 </body>
 </html>
