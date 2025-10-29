@@ -19,94 +19,158 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <div class="logo-icon">[SSS]</div>
+                <div class="logo-icon" aria-hidden="true">[SSS]</div>
                 <h1 class="logo-text">Сергей Коржов</h1>
             </div>
-          <nav class="nav" aria-label="Основная навигация">
-    <ul class="nav-list">
-        <li><a href="../index.html" class="nav-link">Главная</a></li>
-        <li><a href="projects.html" class="nav-link">Проекты</a></li>
-        <li><a href="diary.html" class="nav-link">Дневник</a></li>
-        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
-        <li><a href="../adaptive-images-demo.html" class="nav-link">Адаптивность</a></li>
-    </ul>
-</nav>
+            <nav class="nav" aria-label="Основная навигация">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Главная</a></li>
+                    <li><a href="projects.html" class="nav-link">Проекты</a></li>
+                    <li><a href="diary.html" class="nav-link">Дневник</a></li>
+                    <li><a href="contacts.html" class="nav-link" aria-current="page">Контакты</a></li>
+                    <li><a href="../adaptive-images-demo.html" class="nav-link">Адаптивность</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <main id="main" class="main">
         <section class="contacts section">
             <div class="container">
-                <h2 class="section-title">Свяжитесь со мной</h2>
+                <h1 class="section-title">Свяжитесь со мной</h1>
                 
                 <div class="contact-content">
-                    <form class="contact-form" id="contact-form" novalidate>
-                        <div class="form-group">
-                            <label for="name" class="form-label">Имя:</label>
-                            <input type="text" id="name" name="name" class="form-input" required
-                                   aria-describedby="name-hint">
-                            <small id="name-hint" class="form-hint">Ваше полное имя</small>
-                            <div id="name-error" class="form-error" role="alert" aria-live="polite"></div>
+                    <form class="contact-form" id="contact-form" novalidate aria-labelledby="form-title">
+                        <h2 id="form-title" class="sr-only">Форма обратной связи</h2>
+                        
+                        <fieldset class="form-fieldset">
+                            <legend class="form-legend">Контактная информация</legend>
+                            
+                            <div class="form-group">
+                                <label for="name" class="form-label">
+                                    Имя:
+                                    <span class="required-asterisk" aria-hidden="true">*</span>
+                                </label>
+                                <input type="text" id="name" name="name" class="form-input" required
+                                       aria-required="true"
+                                       aria-describedby="name-hint name-error"
+                                       minlength="2"
+                                       maxlength="50">
+                                <small id="name-hint" class="form-hint">Ваше полное имя (от 2 до 50 символов)</small>
+                                <div id="name-error" class="form-error" role="alert" aria-live="polite"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="form-label">
+                                    Email:
+                                    <span class="required-asterisk" aria-hidden="true">*</span>
+                                </label>
+                                <input type="email" id="email" name="email" class="form-input" required
+                                       aria-required="true"
+                                       aria-describedby="email-hint email-error"
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                <small id="email-hint" class="form-hint">Мы пришлём ответ на этот адрес</small>
+                                <div id="email-error" class="form-error" role="alert" aria-live="polite"></div>
+                            </div>
+                        </fieldset>
+                        
+                        <fieldset class="form-fieldset">
+                            <legend class="form-legend">Ваше сообщение</legend>
+                            
+                            <div class="form-group">
+                                <label for="message" class="form-label">
+                                    Сообщение:
+                                    <span class="required-asterisk" aria-hidden="true">*</span>
+                                </label>
+                                <textarea id="message" name="message" class="form-textarea" rows="5" required
+                                          aria-required="true"
+                                          aria-describedby="message-hint message-error"
+                                          minlength="10"
+                                          maxlength="1000"></textarea>
+                                <small id="message-hint" class="form-hint">Опишите ваше предложение или вопрос (от 10 до 1000 символов)</small>
+                                <div id="message-error" class="form-error" role="alert" aria-live="polite"></div>
+                            </div>
+                        </fieldset>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="button" id="submit-btn">
+                                Отправить сообщение
+                            </button>
+                            <button type="reset" class="button button-secondary">
+                                Очистить форму
+                            </button>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" id="email" name="email" class="form-input" required
-                                   aria-describedby="email-hint">
-                            <small id="email-hint" class="form-hint">Мы пришлём ответ на этот адрес</small>
-                            <div id="email-error" class="form-error" role="alert" aria-live="polite"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message" class="form-label">Сообщение:</label>
-                            <textarea id="message" name="message" class="form-textarea" rows="5" required
-                                      aria-describedby="message-hint"></textarea>
-                            <small id="message-hint" class="form-hint">Опишите ваше предложение или вопрос</small>
-                            <div id="message-error" class="form-error" role="alert" aria-live="polite"></div>
-                        </div>
-                        
-                        <button type="submit" class="button">Отправить сообщение</button>
+                        <p class="form-required-notice">
+                            <span class="required-asterisk" aria-hidden="true">*</span>
+                            <span class="sr-only">Обязательные поля</span>
+                            Поля, отмеченные звёздочкой, обязательны для заполнения
+                        </p>
                     </form>
                     
-                    <div class="contact-info">
-                        <h3 class="contact-info-title">Контакты:</h3>
-                        <div class="contact-item">
-                            <span class="contact-icon">📧</span>
-                            <a href="mailto:student@edu.ru" class="contact-link">jrserg0@gmail.com</a>
+                    <aside class="contact-info" aria-labelledby="contact-info-title">
+                        <h2 id="contact-info-title" class="contact-info-title">Контакты</h2>
+                        <div class="contact-list" role="list">
+                            <div class="contact-item" role="listitem">
+                                <span class="contact-icon" aria-hidden="true">📧</span>
+                                <a href="mailto:jrserg0@gmail.com" class="contact-link">
+                                    jrserg0@gmail.com
+                                </a>
+                            </div>
+                            <div class="contact-item" role="listitem">
+                                <span class="contact-icon" aria-hidden="true">🐙</span>
+                                <a href="https://github.com/pr1azzz" target="_blank" class="contact-link" 
+                                   rel="noopener noreferrer">
+                                    GitHub: pr1azzz
+                                    <span class="sr-only">(откроется в новой вкладке)</span>
+                                </a>
+                            </div>
+                            <div class="contact-item" role="listitem">
+                                <span class="contact-icon" aria-hidden="true">🌍</span>
+                                <a href="https://pr1azzz.github.io/front-and-back/" target="_blank" class="contact-link"
+                                   rel="noopener noreferrer">
+                                    Мой сайт
+                                    <span class="sr-only">(откроется в новой вкладке)</span>
+                                </a>
+                            </div>
+                            <div class="contact-item" role="listitem">
+                                <span class="contact-icon" aria-hidden="true">📍</span>
+                                <span>Москва, Россия</span>
+                            </div>
                         </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">🐙</span>
-                            <a href="https://github.com/pr1azzz" target="_blank" class="contact-link">GitHub: pr1azzz</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">🌍</span>
-                            <a href="https://pr1azzz.github.io/front-and-back/" target="_blank" class="contact-link">Мой сайт</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">📍</span>
-                            <span>Москва, Россия</span>
-                        </div>
-                    </div>
+                    </aside>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Модальное окно уведомления -->
-    <div id="notification" class="modal hidden">
+    <div id="notification" class="modal hidden" role="dialog" aria-modal="true" 
+         aria-labelledby="notification-title" aria-describedby="notification-message">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Сообщение отправлено!</h3>
-            <p>Ваше сообщение успешно отправлено. Я свяжусь с вами в ближайшее время.</p>
-            <button class="button" id="close-notification-btn">OK</button>
+            <button type="button" class="close-modal" aria-label="Закрыть диалоговое окно">&times;</button>
+            <h3 id="notification-title">Сообщение отправлено!</h3>
+            <p id="notification-message">Ваше сообщение успешно отправлено. Я свяжусь с вами в ближайшее время.</p>
+            <div class="form-actions">
+                <button class="button" id="close-notification-btn">OK</button>
+            </div>
         </div>
     </div>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 <a href="https://pr1azzz.github.io/front-and-back/" target="_blank" class="footer-link">Мой сайт</a> | 
-               <a href="https://github.com/pr1azzz" target="_blank" class="footer-link">GitHub</a> |
-               <a href="../adaptive-images-demo.html" class="footer-link">Адаптивность</a>
+            <p>&copy; 2025 
+                <a href="https://pr1azzz.github.io/front-and-back/" target="_blank" class="footer-link"
+                   rel="noopener noreferrer">
+                    Мой сайт
+                    <span class="sr-only">(откроется в новой вкладке)</span>
+                </a> | 
+                <a href="https://github.com/pr1azzz" target="_blank" class="footer-link"
+                   rel="noopener noreferrer">
+                    GitHub
+                    <span class="sr-only">(откроется в новой вкладке)</span>
+                </a> |
+                <a href="../adaptive-images-demo.html" class="footer-link">Адаптивность</a>
             </p>
         </div>
     </footer>
